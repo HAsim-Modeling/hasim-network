@@ -1,0 +1,9 @@
+
+[Global]
+Buildorder=1000
+Version=1
+Lock=asim-hasim-network
+Description=Description of hasim-network
+Name=hasim-network
+Tag=HEAD
+CSN=CSN-hasim-network-0
