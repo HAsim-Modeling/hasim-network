@@ -1,0 +1,22 @@
+%name Network Simulator Timing Partition
+%desc Simulate a single network switch
+
+%provides hasim_timep
+
+%requires hasim_modellib
+%requires hasim_uncore
+%requires hasim_memory
+%requires hasim_chip_topology
+%requires chip_base_types
+
+
+%attributes hasim model
+
+%public single-chip-timing-partition.bsv
+%public single-chip-timing-partition.h
+
+%private core-with-cache.dic
+
+%param --dynamic NUM_CORES     0   "Number of cores per chip (0 means use the number of software contexts)"
+
+%param SYNTH_BOUNDARY mkTimingPartition "Name of synthesis boundary"

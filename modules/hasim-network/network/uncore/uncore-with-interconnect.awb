@@ -1,0 +1,18 @@
+%name Network Switch Uncore with Interconnect
+%desc Network Switch Uncore with Interconnect
+%provides hasim_uncore
+
+%requires hasim_interconnect
+%requires hasim_memory_controller
+%requires funcp_memstate_base_types
+%requires funcp_regstate_base_types
+%requires funcp_base_types
+
+%attributes hasim memory
+
+%public uncore-with-interconnect.bsv
+%public uncore-with-interconnect.h
+
+%private uncore-with-interconnect.dic
+
+%param --dynamic NUM_MEM_CTRL   1   "Number of memory controllers per chip"

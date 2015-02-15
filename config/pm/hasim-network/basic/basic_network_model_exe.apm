@@ -1,0 +1,145 @@
+
+[Global]
+SaveParameters=0
+Description=Basic Network Simulation
+File=basic_network_model_exe
+Version=2.2
+Name=Basic Network Simulation
+Type=HAsim
+Class=Asim::Model
+DefaultBenchmark=
+DefaultRunOpts=
+RootName=HW/SW Hybrid Multifpga Project Foundation
+RootProvides=model
+
+[Model]
+DefaultAttributes=hasim inorder alpha simulation
+model=HW/SW Hybrid Multifpga Project Foundation
+
+[HW/SW Hybrid Multifpga Project Foundation]
+File=modules/leap/build-support/project/project-multifpga.awb
+Packagehint=leap-multifpga
+
+[Null FPGA Mapping]
+File=modules/leap/build-support/project/null_mapping.awb
+Packagehint=leap-multifpga
+
+[LIM Compiler Pipeline]
+File=config/pm/leap/submodels/pipelines/build-pipeline-lim.apm
+Packagehint=leap-multifpga
+
+[Simulation HW/SW Environment]
+File=modules/leap-platforms/fpga-environments/sim/sim_hwsw.awb
+Packagehint=leap-multifpga
+
+[HW/SW Hybrid Multifpga Project Foundation/Requires]
+fpga_mapping=Null FPGA Mapping
+build_pipeline=LIM Compiler Pipeline
+connected_application=HAsim Performance Model
+environment_description=Simulation HW/SW Environment
+
+[NULL ISA Definition]
+File=modules/hasim/functional-partition/isa/null-isa/null-isa.awb
+Packagehint=hasim
+
+[HAsim Performance Model/Requires]
+hasim_common=HAsim Common Default Configuration
+hasim_timep=Network Simulator Timing Partition
+hasim_isa=NULL ISA Definition
+hasim_funcp=NULL Functional Partition
+hasim_model_services=Default HAsim Model Services
+
+[HAsim Common Default Configuration]
+File=config/pm/hasim/submodels/common/hasim_common.apm
+Packagehint=hasim
+
+[Default HAsim Model Services]
+File=config/pm/hasim/submodels/common/hasim-model-services.apm
+Packagehint=hasim
+
+[HAsim Performance Model]
+File=modules/hasim/model/hasim-model.awb
+Packagehint=hasim
+
+[Network Simulator Timing Partition]
+File=modules/hasim-network/network/single-chip/single-chip-timing-partition.awb
+Packagehint=hasim-network
+
+[NULL Functional Partition]
+File=modules/hasim/functional-partition/functional-partition-null.awb
+Packagehint=hasim
+
+[HAsim Modeling Library/Requires]
+hasim_cache_algorithms=Cache Modeling Algorithms
+
+[Cache Modeling Algorithms]
+File=modules/hasim/timing-models/caches/cache-algorithms/cache-algorithms.awb
+Packagehint=hasim-models
+
+[Network Simulator Timing Partition/Requires]
+hasim_modellib=HAsim Modeling Library
+hasim_uncore=Network Switch Uncore with Interconnect
+hasim_memory=Null Memory
+hasim_chip_topology=Standard Topology Manager
+chip_base_types=Chip Base Types
+
+[HAsim Modeling Library]
+File=modules/hasim/util/modellib/hasim-modellib.awb
+Packagehint=hasim
+
+[Interconnect Common]
+File=modules/hasim/timing-models/uncore/interconnects/common/icn-common.awb
+Packagehint=hasim-models
+
+[Mesh Interconnect/Requires]
+hasim_interconnect_common=Interconnect Common
+
+[Mesh Interconnect]
+File=modules/hasim/timing-models/uncore/interconnects/torus/icn-mesh.awb
+Packagehint=hasim-models
+
+[Null Memory/Requires]
+memory_base_types=Memory Base Types
+
+[Standard Topology Manager]
+File=modules/hasim/timing-models/chip/topology/std/topology-std.awb
+Packagehint=hasim-models
+
+[Null Memory]
+File=modules/hasim/timing-models/memory/memory-null.awb
+Packagehint=hasim-models
+
+[Memory Base Types]
+File=modules/hasim/timing-models/memory/base-types/memory-base-types.awb
+Packagehint=hasim-models
+
+[Chip Base Types]
+File=modules/hasim/timing-models/chip/base-types/chip-base-types.awb
+Packagehint=hasim-models
+
+[Network Switch Uncore with Interconnect]
+File=modules/hasim-network/network/uncore/uncore-with-interconnect.awb
+Packagehint=hasim-network
+
+[Network Switch Uncore with Interconnect/Requires]
+hasim_interconnect=Mesh Interconnect
+hasim_memory_controller=Latency-Delay Controller
+funcp_memstate_base_types=Functional Partition Memory State Base Types
+funcp_base_types=Functional Partition Base Types
+funcp_regstate_base_types=Functional Partition Register State Base Types
+
+[Latency-Delay Controller]
+File=modules/hasim/timing-models/uncore/memory-controller/latency-delay/memory-controller-latency-delay.awb
+Packagehint=hasim-models
+
+[Functional Partition Memory State Base Types]
+File=modules/hasim/functional-partition/memory-state/base-types/memstate-base-types.awb
+Packagehint=hasim
+
+[Functional Partition Base Types]
+File=modules/hasim/functional-partition/base-types/funcp-base-types.awb
+Packagehint=hasim
+
+[Functional Partition Register State Base Types]
+File=modules/hasim/functional-partition/register-state/base-types/regstate-base-types.awb
+Packagehint=hasim
